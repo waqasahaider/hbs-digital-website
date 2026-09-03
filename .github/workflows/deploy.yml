@@ -1,11 +1,11 @@
 name: Deploy to VPS
 
-# Deploys on every push to main. Static/content changes go live with
-# zero downtime (bind-mounted files); infra changes recreate containers.
+# Deploys on every push to main. Content changes go live with zero
+# downtime (bind-mounted files); config changes recreate the container.
 on:
   push:
     branches: [main]
-  workflow_dispatch: {}   # allow manual runs from the Actions tab
+  workflow_dispatch: {}
 
 concurrency:
   group: production-deploy
@@ -24,12 +24,12 @@ jobs:
           port: ${{ secrets.VPS_SSH_PORT }}
           script: |
             set -e
-            cd /opt/hbs/hbs-digital-website
-            ./infra/deploy.sh
+            cd /docker/hbs-site
+            ./deploy.sh
 
 # Required GitHub repo secrets (Settings → Secrets and variables → Actions):
-#   VPS_HOST      → the VPS IP address
-#   VPS_USER      → the non-root deploy user (e.g. deploy)
-#   VPS_SSH_PORT  → SSH port (e.g. 22, or your custom port)
-#   VPS_SSH_KEY   → the PRIVATE key whose public half is in the deploy
-#                    user's ~/.ssh/authorized_keys on the VPS
+#   VPS_HOST      → 187.127.185.134
+#   VPS_USER      → deploy   (a non-root user; or root for the simplest start)
+#   VPS_SSH_PORT  → 22
+#   VPS_SSH_KEY   → the PRIVATE key whose public half is in the VPS user's
+#                    ~/.ssh/authorized_keys

@@ -1,18 +1,13 @@
-# Secrets — env files live only on the server, never in git
-.env
-infra/.env
-*.env
-!.env.example
-!infra/.env.example
-
-# Let's Encrypt / TLS material (managed on the server)
-infra/traefik/acme.json
-**/acme.json
-
 # OS / editor cruft
 .DS_Store
 *.log
 Thumbs.db
+
+# Secrets (this static site needs none; future services keep their own
+# .env in /docker/<service>/ on the VPS, never in git)
+.env
+*.env
+!*.env.example
 
 # Node (for a future CRM/API package)
 node_modules/

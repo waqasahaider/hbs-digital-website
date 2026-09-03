@@ -1,0 +1,37 @@
+# ============================================================
+# H b&s Digital — website (static) for the Hostinger KVM 2 VPS
+#
+# This does NOT run its own reverse proxy. It plugs into the
+# Traefik that already runs on this VPS (network_mode: host,
+# docker provider, certresolver "letsencrypt") and serves the
+# CRM and n8n. We only add one nginx container; Traefik discovers
+# it by these labels and issues its TLS cert automatically.
+#
+# Deploy location on the VPS:  /docker/hbs-site
+#   docker compose up -d
+# ============================================================
+
+name: hbs-site
+
+services:
+  web:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    volumes:
+      # Static files, bind-mounted read-only. `git pull` updates them
+      # in place → zero-downtime content updates, no container restart.
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      - "traefik.enable=true"
+      # Route the apex + www to this container over HTTPS
+      - "traefik.http.routers.hbs-web.rule=Host(`hbsdigital.ae`) || Host(`www.hbsdigital.ae`)"
+      - "traefik.http.routers.hbs-web.entrypoints=websecure"
+      - "traefik.http.routers.hbs-web.tls=true"
+      - "traefik.http.routers.hbs-web.tls.certresolver=letsencrypt"
+      - "traefik.http.services.hbs-web.loadbalancer.server.port=80"
+      # Redirect www → apex (canonical host)
+      - "traefik.http.routers.hbs-web.middlewares=hbs-www-redirect"
+      - "traefik.http.middlewares.hbs-www-redirect.redirectregex.regex=^https://www\\.(.*)"
+      - "traefik.http.middlewares.hbs-www-redirect.redirectregex.replacement=https://$${1}"
+      - "traefik.http.middlewares.hbs-www-redirect.redirectregex.permanent=true"
