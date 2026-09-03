@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H b&amp;s Digital — AI systems for real businesses</title>
+<style>
+  :root{
+    --bg: #0a0912;
+    --bg-elevated: #14122256;
+    --panel: #14122540;
+    --text: #f2f0f8;
+    --text-muted: #9b95b3;
+    --line: #2b2740;
+    --violet: #5b3bd6;
+    --purple: #9440cc;
+    --pink: #e0447f;
+    --orange: #e0703a;
+    --grad: linear-gradient(90deg, var(--violet) 0%, var(--purple) 35%, var(--pink) 66%, var(--orange) 100%);
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* subtle fixed background glow, echoes the brand wallpaper */
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(600px 400px at 15% 8%, rgba(91,59,214,0.16), transparent 60%),
+      radial-gradient(500px 380px at 85% 30%, rgba(224,68,127,0.10), transparent 60%),
+      radial-gradient(700px 500px at 50% 95%, rgba(148,64,204,0.08), transparent 60%);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,9,18,0.78);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .brand{
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .brand .mark{
+    font-family: var(--serif);
+    font-size: 26px;
+    letter-spacing: 0.5px;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .brand .dot{
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--grad);
+    display: inline-block;
+    transform: translateY(-6px);
+  }
+  .brand .sub{
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    transform: translateY(1px);
+  }
+
+  .navlinks{
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  .navlinks button{
+    background: none; border: none;
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 6px 0;
+    position: relative;
+  }
+  .navlinks button.active{ color: var(--text); }
+  .navlinks button.active::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:-2px;
+    height: 2px;
+    background: var(--grad);
+  }
+  .cta-btn{
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color .2s ease;
+  }
+  .cta-btn:hover{ border-color: var(--purple); }
+  .cta-btn.solid{
+    background: var(--grad);
+    border: none;
+    color: #100b1c;
+    font-weight: 600;
+  }
+
+  .navlinks-mobile{ display:none; }
+
+  /* ---------- PAGES ---------- */
+  .page{ display: none; }
+  .page.active{ display: block; }
+
+  section{ padding: 100px 0; }
+  section.tight{ padding: 70px 0; }
+
+  h1,h2,h3{ font-family: var(--serif); font-weight: 400; margin: 0; }
+
+  .eyebrow-line{
+    width: 46px; height: 2px;
+    background: var(--grad);
+    margin-bottom: 22px;
+  }
+
+  /* ---------- HOME ---------- */
+  .hero{
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 70px;
+  }
+  .hero h1{
+    font-size: 52px;
+    line-height: 1.18;
+    max-width: 620px;
+  }
+  .hero p.lede{
+    margin-top: 26px;
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 480px;
+  }
+  .hero .actions{
+    margin-top: 38px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .link-inline{
+    font-size: 15px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    cursor: pointer;
+    background: none; border: none; font-family: var(--sans);
+  }
+  .link-inline:hover{ color: var(--text); border-color: var(--purple); }
+
+  .hero-orb{
+    position: relative;
+    height: 360px;
+  }
+  .hero-orb .glow{
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(224,68,127,0.35), rgba(91,59,214,0.25) 45%, transparent 70%);
+    filter: blur(6px);
+  }
+  .hero-orb .ring{
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 260px; height: 260px;
+    transform: translate(-50%,-50%);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+  }
+  .hero-orb .ring2{
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 340px; height: 340px;
+    transform: translate(-50%,-50%);
+    border: 1px solid rgba(148,64,204,0.25);
+    border-radius: 50%;
+  }
+
+  .capability-strip{
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+  .capability-strip span.dot{
+    display:inline-block; width:4px; height:4px; border-radius:50%;
+    background: var(--grad); margin-right: 10px; transform: translateY(-2px);
+  }
+
+  .home-intro{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    padding: 90px 0;
+    border-top: 1px solid var(--line);
+  }
+  .home-intro h2{ font-size: 32px; line-height: 1.3; }
+  .home-intro .col p{ color: var(--text-muted); font-size: 16px; }
+  .home-intro .col p + p{ margin-top: 14px; }
+
+  /* ---------- ABOUT ---------- */
+  .page-head{ padding-top: 70px; padding-bottom: 10px; }
+  .page-head h2{ font-size: 40px; }
+
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 70px;
+    padding: 40px 0 100px;
+  }
+  .about-grid p{ color: var(--text-muted); font-size: 17px; }
+  .about-grid p + p{ margin-top: 16px; }
+
+  .how-list{ border-top: 1px solid var(--line); }
+  .how-item{
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .how-item h3{
+    font-size: 17px;
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .how-item p{ color: var(--text-muted); font-size: 14.5px; margin: 0; }
+
+  /* ---------- SERVICES ---------- */
+  .services-list{ border-top: 1px solid var(--line); padding-bottom: 100px; }
+  .service-row{
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .service-row h3{
+    font-size: 25px;
+    color: var(--text);
+  }
+  .service-row p{
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 520px;
+    align-self: center;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    padding: 40px 0 110px;
+  }
+  .contact-info p{ color: var(--text-muted); font-size: 16px; max-width: 380px; }
+  .contact-detail{ margin-top: 34px; }
+  .contact-detail .label{ font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+  .contact-detail .value{ font-size: 16px; }
+  .contact-detail + .contact-detail{ margin-top: 22px; }
+
+  form{ display: flex; flex-direction: column; gap: 18px; }
+  .field label{
+    display:block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px;
+  }
+  .field input, .field textarea{
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 10px 2px;
+    outline: none;
+    transition: border-color .2s ease;
+  }
+  .field input:focus, .field textarea:focus{ border-color: var(--purple); }
+  .field textarea{ resize: vertical; min-height: 90px; }
+  .submit-btn{
+    align-self: flex-start;
+    margin-top: 10px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: #100b1c;
+    background: var(--grad);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .form-note{ font-size: 13.5px; color: var(--text-muted); margin-top: 14px; display:none; }
+  .form-note.show{ display:block; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+  }
+  footer .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  footer .brand .mark{ font-size: 18px; }
+  footer .copy{ font-size: 13px; color: var(--text-muted); }
+
+  /* ---------- FOCUS ---------- */
+  button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline: 2px solid var(--pink);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; }
+    .hero-orb{ height: 220px; order: -1; }
+    .hero h1{ font-size: 38px; }
+    .home-intro{ grid-template-columns: 1fr; gap: 30px; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .contact-grid{ grid-template-columns: 1fr; }
+    .service-row{ grid-template-columns: 1fr; gap: 10px; }
+    .navlinks{ display: none; }
+    .wrap{ padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand" data-nav="home">
+      <span class="mark">H b&amp;s</span><span class="dot"></span>
+      <span class="sub">DIGITAL</span>
+    </div>
+    <div class="navlinks">
+      <button data-nav="home" class="active">Home</button>
+      <button data-nav="about">About</button>
+      <button data-nav="services">Services</button>
+      <button data-nav="contact">Contact</button>
+    </div>
+    <button class="cta-btn solid" data-nav="contact">Book a consultation</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="page active" id="home">
+    <div class="wrap hero">
+      <div>
+        <h1>AI systems that run your business, not just answer your questions.</h1>
+        <p class="lede">H b&amp;s Digital builds and installs the automation, agents, and workflows that take AI out of the chat window and into the way you actually work.</p>
+        <div class="actions">
+          <button class="cta-btn solid" data-nav="contact">Book a consultation</button>
+          <button class="link-inline" data-nav="services">See what we build</button>
+        </div>
+      </div>
+      <div class="hero-orb">
+        <div class="glow"></div>
+        <div class="ring2"></div>
+        <div class="ring"></div>
+      </div>
+    </div>
+
+    <div class="wrap capability-strip">
+      <span><span class="dot"></span>Workflow automation</span>
+      <span><span class="dot"></span>Custom AI agents</span>
+      <span><span class="dot"></span>System integration</span>
+      <span><span class="dot"></span>Team training</span>
+    </div>
+
+    <div class="wrap home-intro">
+      <div class="col">
+        <h2>Most businesses are using AI. Few are running on it.</h2>
+      </div>
+      <div class="col">
+        <p>Opening a chat window and prompting one answer at a time isn't automation — it's a slightly faster version of manual work. We build the systems that sit behind the scenes: agents that handle the repeatable parts of sales, marketing, support, and operations without someone re-typing the same prompt every day.</p>
+        <p>Every engagement starts with your actual processes, not a generic playbook, so what we build fits how your business really runs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="page" id="about">
+    <div class="wrap page-head">
+      <div class="eyebrow-line"></div>
+      <h2>Why H b&amp;s Digital</h2>
+    </div>
+    <div class="wrap about-grid">
+      <div>
+        <p>H b&amp;s Digital provides artificial intelligence automation and consulting services designed to help businesses adopt and integrate AI technologies into their day-to-day operations. We specialise in identifying manual, repetitive, and time-consuming processes and replacing or enhancing them with AI-driven workflows and custom-trained systems.</p>
+        <p>We work with SMEs, startups, and corporate clients across industries who want to improve operational efficiency, reduce manual workload, and scale through the practical application of AI — not through slide decks or theory, but through systems that are actually running by the time we're done.</p>
+      </div>
+      <div class="how-list">
+        <div class="how-item">
+          <h3>We start with your process</h3>
+          <p>We map how work actually gets done before we automate any of it.</p>
+        </div>
+        <div class="how-item">
+          <h3>We build for your tools</h3>
+          <p>Automation lives inside the software you already use, not a new platform to manage.</p>
+        </div>
+        <div class="how-item">
+          <h3>We train your team</h3>
+          <p>Systems only pay off if the people using them understand how to run them.</p>
+        </div>
+        <div class="how-item">
+          <h3>We stay after launch</h3>
+          <p>Ongoing support as your business — and the AI tools available to it — evolve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="page" id="services">
+    <div class="wrap page-head">
+      <div class="eyebrow-line"></div>
+      <h2>What we do</h2>
+    </div>
+    <div class="wrap services-list">
+      <div class="service-row">
+        <h3>AI strategy consulting</h3>
+        <p>We identify where automation creates the most leverage in your operations, and build a practical roadmap instead of a wish list.</p>
+      </div>
+      <div class="service-row">
+        <h3>Workflow automation</h3>
+        <p>We replace manual, repetitive processes with automated systems that run in the background, without you having to remember to run them.</p>
+      </div>
+      <div class="service-row">
+        <h3>Custom AI agents</h3>
+        <p>Purpose-built assistants for sales, marketing, customer service, and back-office work — trained on your business, not a generic template.</p>
+      </div>
+      <div class="service-row">
+        <h3>System integration</h3>
+        <p>We connect AI tools directly into the software you already run your business on, so nothing sits in a separate tab no one opens.</p>
+      </div>
+      <div class="service-row">
+        <h3>Training &amp; adoption</h3>
+        <p>We get your team fluent in working alongside AI day to day, so the systems keep paying off long after we hand them over.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="page" id="contact">
+    <div class="wrap page-head">
+      <div class="eyebrow-line"></div>
+      <h2>Let's talk</h2>
+    </div>
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <p>Tell us what's eating up time in your business right now. We'll tell you honestly whether AI automation is the right fix for it.</p>
+        <div class="contact-detail">
+          <div class="label">Email</div>
+          <div class="value">hello@hbsdigital.ae</div>
+        </div>
+        <div class="contact-detail">
+          <div class="label">Phone</div>
+          <div class="value">+971 __ ___ ____</div>
+        </div>
+        <div class="contact-detail">
+          <div class="label">Based in</div>
+          <div class="value">Dubai, United Arab Emirates</div>
+        </div>
+      </div>
+      <div>
+        <form id="contactForm">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="field">
+            <label for="message">What are you trying to automate?</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send message</button>
+          <p class="form-note" id="formNote">Thanks — your message is ready. Connect this form to your email service to start receiving these.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" data-nav="home">
+      <span class="mark">H b&amp;s</span><span class="dot"></span>
+      <span class="sub">DIGITAL</span>
+    </div>
+    <div class="copy">© 2026 H b&amp;s Digital. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const navButtons = document.querySelectorAll('[data-nav]');
+  const pages = document.querySelectorAll('.page');
+  const navLinks = document.querySelectorAll('.navlinks button');
+
+  function goTo(id){
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    navLinks.forEach(b => b.classList.toggle('active', b.dataset.nav === id));
+    window.scrollTo({top:0, behavior:'auto'});
+    history.replaceState(null, '', '#' + id);
+  }
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => goTo(btn.dataset.nav));
+  });
+
+  const initial = window.location.hash.replace('#','');
+  if (initial && document.getElementById(initial)) {
+    goTo(initial);
+  }
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('formNote').classList.add('show');
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
