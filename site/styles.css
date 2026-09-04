@@ -85,36 +85,38 @@ nav.wrap{
   height: 76px;
 }
 /* Logo lockup: 3-line centered stack — "H b&s" / dot / tracked "DIGITAL"
-   (matches HBS_Digital master artwork) */
+   (matches HBS_Digital master artwork). Everything scales from the
+   .brand font-size, so header/footer just set that one value. */
 .brand{
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0.15em;
   line-height: 1;
+  font-size: 32px;        /* header lockup scale */
   user-select: none;
 }
 .brand .mark{
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: 1em;
   line-height: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.02em;
   background: var(--grad);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .brand .dot{
-  width: 4px; height: 4px;
+  width: 0.16em; height: 0.16em;
   border-radius: 50%;
   background: var(--grad);
   display: block;
 }
 .brand .sub{
-  font-size: 9px;
+  font-size: 0.31em;
   line-height: 1;
-  letter-spacing: 3px;
-  padding-left: 3px; /* balance the trailing letter-spacing so it optically centers */
+  letter-spacing: 0.4em;
+  padding-left: 0.4em;    /* balance the trailing tracking so it optically centers */
   color: var(--text-muted);
 }
 
@@ -457,7 +459,7 @@ footer .wrap{
   flex-wrap: wrap;
   gap: 16px;
 }
-footer .brand .mark{ font-size: 18px; }
+footer .brand{ font-size: 22px; }
 footer .foot-links{ display: flex; gap: 22px; font-size: 14px; color: var(--text-muted); }
 footer .foot-links a:hover{ color: var(--text); }
 footer .copy{ font-size: 13px; color: var(--text-muted); }
