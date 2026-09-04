@@ -10,10 +10,10 @@ resolver `letsencrypt`) that fronts the CRM and n8n. This website is **one more
 container behind that same Traefik** — it does not run its own proxy.
 
 ```
-Internet ─▶ Traefik (:80/:443, existing)  on the VPS 187.127.185.134
+Internet ─▶ Traefik (:80/:443, existing)  on the VPS <VPS_IP>
                 ├─▶ hbs-site (nginx → ./site)   hbsdigital.ae, www
-                ├─▶ hbs-crm-web / -api          crm.srv1777624.hstgr.cloud
-                └─▶ n8n                          n8n-4hkc.srv1777624.hstgr.cloud
+                ├─▶ hbs-crm-web / -api          crm.<vps-hostname>
+                └─▶ n8n                          n8n-4hkc.<vps-hostname>
 ```
 
 ## Repository layout

@@ -1,7 +1,7 @@
 # H b&s Digital — VPS Deployment Runbook
 
-How the website is deployed onto the **Hostinger KVM 2 VPS** (`srv1777624`,
-`187.127.185.134`, Ubuntu 24.04) and how to operate it.
+How the website is deployed onto the **Hostinger KVM 2 VPS** (`<vps>`,
+`<VPS_IP>`, Ubuntu 24.04) and how to operate it.
 
 > ⚠️ marks the only hard-to-undo step: the DNS change at Tasjeel.
 
@@ -14,8 +14,8 @@ This VPS already runs a production stack under `/docker/`:
 | App | Containers | Domain (via Traefik) | Dir |
 |---|---|---|---|
 | **traefik** | reverse proxy, host network, LE resolver `letsencrypt` | — | `/docker/traefik` |
-| **hbs-crm** | web (:3000), api (:4000), db + backup (postgres) | `crm.srv1777624.hstgr.cloud` | `/docker/hbs-crm` |
-| **n8n-4hkc** | n8n | `n8n-4hkc.srv1777624.hstgr.cloud` | `/docker/n8n-4hkc` |
+| **hbs-crm** | web (:3000), api (:4000), db + backup (postgres) | `crm.<vps-hostname>` | `/docker/hbs-crm` |
+| **n8n-4hkc** | n8n | `n8n-4hkc.<vps-hostname>` | `/docker/n8n-4hkc` |
 
 Traefik: `--providers.docker`, `exposedbydefault=false`, entrypoints `web`:80 →
 `websecure`:443 (auto-redirect), HTTP-01 Let's Encrypt via resolver **`letsencrypt`**.
@@ -73,8 +73,8 @@ Add these records in Tasjeel's DNS for `hbsdigital.ae`:
 
 | Type | Name | Value | TTL |
 |---|---|---|---|
-| A | `@`   | `187.127.185.134` | 3600 |
-| A | `www` | `187.127.185.134` | 3600 |
+| A | `@`   | `<VPS_IP>` | 3600 |
+| A | `www` | `<VPS_IP>` | 3600 |
 
 - Only A records change; leave nameservers at Tasjeel.
 - Propagation: 30 min – a few hours. Verify: `dig +short hbsdigital.ae` → the IP.
@@ -121,7 +121,7 @@ Add repo secrets (Settings → Secrets and variables → Actions):
 
 | Secret | Value |
 |---|---|
-| `VPS_HOST` | `187.127.185.134` |
+| `VPS_HOST` | `<VPS_IP>` |
 | `VPS_USER` | `deploy` (or `root` to start) |
 | `VPS_SSH_PORT` | `22` |
 | `VPS_SSH_KEY` | private key whose public half is in that user's `authorized_keys` |
@@ -151,9 +151,9 @@ the proxy are untouched. n8n and the CRM already follow this exact pattern.
 - [ ] Repo pushed to GitHub
 - [ ] Cloned to `/docker/hbs-site` on the VPS
 - [ ] `docker compose up -d` → `hbs-site` running
-- [ ] A records `@` and `www` → `187.127.185.134` at Tasjeel
+- [ ] A records `@` and `www` → `<VPS_IP>` at Tasjeel
 - [ ] `dig +short hbsdigital.ae` returns the IP
 - [ ] `https://hbsdigital.ae` serves with a valid cert; redirects work
-- [ ] CRM (`crm.srv1777624.hstgr.cloud`) and n8n still work — unaffected
+- [ ] CRM (`crm.<vps-hostname>`) and n8n still work — unaffected
 - [ ] GitHub Action secrets set; push to `main` deploys
 - [ ] Formspree form ID set in `site/contact/index.html`

@@ -28,7 +28,7 @@ jobs:
             ./deploy.sh
 
 # Required GitHub repo secrets (Settings → Secrets and variables → Actions):
-#   VPS_HOST      → 187.127.185.134
+#   VPS_HOST      → <VPS_IP>
 #   VPS_USER      → deploy   (a non-root user; or root for the simplest start)
 #   VPS_SSH_PORT  → 22
 #   VPS_SSH_KEY   → the PRIVATE key whose public half is in the VPS user's
