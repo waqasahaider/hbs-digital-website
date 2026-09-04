@@ -84,15 +84,23 @@ nav.wrap{
   justify-content: space-between;
   height: 76px;
 }
+/* Logo lockup: "H b&s" + dot on top, tracked "DIGITAL" underneath */
 .brand{
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: 5px;
+  row-gap: 3px;
+  justify-content: start;
+  line-height: 1;
   user-select: none;
 }
 .brand .mark{
+  grid-column: 1;
+  grid-row: 1;
   font-family: var(--serif);
   font-size: 26px;
+  line-height: 1;
   letter-spacing: 0.5px;
   background: var(--grad);
   -webkit-background-clip: text;
@@ -100,17 +108,22 @@ nav.wrap{
   color: transparent;
 }
 .brand .dot{
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--grad);
   display: inline-block;
-  transform: translateY(-6px);
+  transform: translateY(3px);
 }
 .brand .sub{
+  grid-column: 1 / -1;
+  grid-row: 2;
   font-size: 11px;
+  line-height: 1;
   letter-spacing: 3px;
   color: var(--text-muted);
-  transform: translateY(1px);
 }
 
 .navlinks{
