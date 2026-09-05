@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H b&amp;s Digital — Coming soon</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --bg:#0a0912; --text:#f2f0f8; --muted:#9b95b3; --line:#2b2740;
+    --grad:linear-gradient(90deg,#5b3bd6 0%,#9440cc 35%,#e0447f 66%,#e0703a 100%);
+    --serif:Georgia,'Times New Roman',serif; --sans:Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text); font-family:var(--sans);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    -webkit-font-smoothing:antialiased; padding:24px;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(600px 400px at 20% 15%, rgba(91,59,214,0.18), transparent 60%),
+      radial-gradient(520px 380px at 82% 30%, rgba(224,68,127,0.12), transparent 60%),
+      radial-gradient(700px 500px at 50% 100%, rgba(148,64,204,0.10), transparent 60%);
+  }
+  .wrap{max-width:520px;}
+  .brand{display:inline-flex; flex-direction:column; align-items:center; gap:0.15em; line-height:1; font-size:44px;}
+  .brand .mark{font-family:var(--serif); font-size:1em; letter-spacing:.02em;
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .brand .dot{width:.16em; height:.16em; border-radius:50%; background:var(--grad);}
+  .brand .sub{font-size:.31em; letter-spacing:.4em; padding-left:.4em; color:var(--muted);}
+  h1{font-family:var(--serif); font-weight:400; font-size:30px; margin:44px 0 0;}
+  p{color:var(--muted); font-size:16px; line-height:1.6; margin:18px 0 0;}
+  .rule{width:46px; height:2px; background:var(--grad); margin:34px auto 0;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">H b&amp;s</span><span class="dot"></span><span class="sub">DIGITAL</span>
+    </div>
+    <div class="rule"></div>
+    <h1>We're making improvements.</h1>
+    <p>Our site is getting an update and will be back online shortly. Thank you for your patience.</p>
+  </div>
+</body>
+</html>
