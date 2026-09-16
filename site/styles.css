@@ -15,8 +15,11 @@
   --pink: #e0447f;
   --orange: #e0703a;
   --grad: linear-gradient(90deg, var(--violet) 0%, var(--purple) 35%, var(--pink) 66%, var(--orange) 100%);
-  --serif: Georgia, 'Times New Roman', serif;
-  --sans: Helvetica, Arial, sans-serif;
+  /* Typography — Manrope, matching the Haider Mortgage site */
+  --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --serif: 'Manrope', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Logo wordmark keeps the Georgia serif from the H b&s master artwork */
+  --logo: Georgia, 'Times New Roman', serif;
 }
 
 * { box-sizing: border-box; }
@@ -97,7 +100,7 @@ nav.wrap{
   user-select: none;
 }
 .brand .mark{
-  font-family: var(--serif);
+  font-family: var(--logo);
   font-size: 1em;
   line-height: 1;
   letter-spacing: 0.02em;
@@ -198,7 +201,7 @@ main{ min-height: 60vh; }
 section{ padding: 100px 0; }
 section.tight{ padding: 70px 0; }
 
-h1,h2,h3{ font-family: var(--serif); font-weight: 400; margin: 0; }
+h1,h2,h3{ font-family: var(--serif); font-weight: 600; margin: 0; letter-spacing: -0.01em; }
 
 .eyebrow-line{
   width: 46px; height: 2px;
