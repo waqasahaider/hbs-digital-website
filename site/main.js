@@ -73,13 +73,13 @@
             return res.json().then(function (d) {
               var msg = (d && d.errors && d.errors.length)
                 ? d.errors.map(function (x) { return x.message; }).join(', ')
-                : 'Something went wrong. Please email us directly at hello@hbsdigital.ae.';
+                : 'Something went wrong. Please email us directly at info@hbsdigital.ae.';
               showNote(msg, true);
             });
           }
         })
         .catch(function () {
-          showNote('Network error. Please email us directly at hello@hbsdigital.ae.', true);
+          showNote('Network error. Please email us directly at info@hbsdigital.ae.', true);
         })
         .finally(function () {
           if (button) { button.disabled = false; button.textContent = 'Send message'; }
