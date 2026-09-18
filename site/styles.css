@@ -614,3 +614,43 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .svc-grid{ grid-template-columns: 1fr; }
   .svc-cta-band{ padding: 34px 22px; }
 }
+
+/* ============================================================
+   SERVICES — how it works, guarantee, industries
+   ============================================================ */
+.steps{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 34px; }
+.step{ border-top: 2px solid var(--line); padding-top: 18px; }
+.step .num{
+  font-size: 13px; font-weight: 800; letter-spacing: 1px;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.step h3{ font-family: var(--sans); font-weight: 700; font-size: 17px; margin: 10px 0 0; color: var(--text); letter-spacing: -0.01em; }
+.step p{ color: var(--text-muted); font-size: 14px; line-height: 1.55; margin: 8px 0 0; }
+
+.guarantee{
+  margin-top: 44px; padding: 30px 32px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--bg-elevated);
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.guarantee > .dot{ flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--grad); margin-top: 7px; }
+.guarantee h3{ font-size: 20px; margin: 0; }
+.guarantee p{ color: var(--text-muted); font-size: 15px; line-height: 1.65; margin: 10px 0 0; max-width: 660px; }
+
+.industries-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+.industry{
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 18px 20px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.industry:hover{ border-color: rgba(181,108,240,0.5); transform: translateY(-2px); }
+.industry > .dot{ display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--grad); }
+.industry h3{ font-family: var(--sans); font-weight: 600; font-size: 15.5px; margin: 12px 0 0; color: var(--text); }
+.industry p{ color: var(--text-muted); font-size: 13px; line-height: 1.5; margin: 6px 0 0; }
+
+@media (max-width: 900px){
+  .steps{ grid-template-columns: repeat(2, 1fr); }
+  .industries-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px){
+  .steps{ grid-template-columns: 1fr; }
+  .guarantee{ flex-direction: column; gap: 12px; padding: 26px 22px; }
+}
