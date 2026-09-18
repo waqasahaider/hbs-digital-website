@@ -75,8 +75,9 @@
         </div>
       </div>
       <div>
-        <!-- Replace YOUR_FORM_ID with your Formspree form ID (see DEPLOYMENT.md, step 2). -->
-        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <!-- Delivers to info@hbsdigital.ae via FormSubmit (no account needed).
+             First submission triggers a one-time activation email to info@ — click it to start receiving. -->
+        <form id="contactForm" action="https://formsubmit.co/ajax/info@hbsdigital.ae" method="POST">
           <div class="field">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" autocomplete="name" required>
@@ -92,9 +93,10 @@
           <!-- Honeypot: hidden from people, filled in by spam bots. -->
           <div class="hp-field" aria-hidden="true">
             <label for="company-website">Leave this field empty</label>
-            <input type="text" id="company-website" name="_gotcha" tabindex="-1" autocomplete="off">
+            <input type="text" id="company-website" name="_honey" tabindex="-1" autocomplete="off">
           </div>
           <input type="hidden" name="_subject" value="New enquiry from hbsdigital.ae">
+          <input type="hidden" name="_template" value="table">
           <button type="submit" class="submit-btn">Send message</button>
           <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
         </form>
