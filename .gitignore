@@ -12,3 +12,6 @@ Thumbs.db
 # Node (for a future CRM/API package)
 node_modules/
 dist/
+
+# Internal planning docs (keep out of the public repo)
+HbS_Digital_Website_Services_Brief.md
