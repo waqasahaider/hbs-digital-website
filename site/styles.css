@@ -24,7 +24,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body{
   margin:0;
@@ -253,6 +253,7 @@ h1,h2,h3{ font-family: var(--serif); font-weight: 600; margin: 0; letter-spacing
 .hero-orb{
   position: relative;
   height: 360px;
+  overflow: hidden;
 }
 .hero-orb .glow{
   position: absolute;
