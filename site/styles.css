@@ -797,3 +797,34 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .industries-grid .ico-box{ width: 40px; height: 40px; margin-bottom: 12px; }
 
 @media (max-width: 620px){ .about-values{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   SERVICES — 2-column boxed cards (matches Haider Mortgage layout)
+   ============================================================ */
+.services-list{ display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; border-top: none; padding-bottom: 0; }
+.service-box{
+  position: relative; display: flex; flex-direction: column; overflow: hidden;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 32px 30px;
+  text-decoration: none; color: inherit;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.service-box::before{ content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); }
+.service-box:hover{ border-color: rgba(181,108,240,0.5); transform: translateY(-3px); box-shadow: 0 18px 40px rgba(0,0,0,0.3); }
+.service-box h3{ font-family: var(--sans); font-weight: 700; font-size: 21px; margin: 0; color: var(--text); letter-spacing: -0.01em; }
+.service-box > p{ color: var(--text-muted); font-size: 15px; line-height: 1.6; margin: 12px 0 0; }
+.service-box ul{ list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.service-box li{ position: relative; padding-left: 18px; color: var(--text-muted); font-size: 14px; line-height: 1.45; }
+.service-box li::before{ content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--grad); }
+.box-more{ margin-top: 20px; padding-top: 18px; font-size: 14px; font-weight: 600; color: var(--text); }
+.service-box:hover .box-more{ color: var(--purple); }
+
+@media (max-width: 760px){ .services-list{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   FAQ — boxed accordion cards (matches Haider Mortgage layout)
+   ============================================================ */
+.faq-list{ border-top: none; max-width: 840px; }
+.faq-item{ border: 1px solid var(--line); border-radius: 12px; background: var(--panel); margin-bottom: 14px; overflow: hidden; }
+.faq-item summary{ padding: 20px 24px; }
+.faq-item summary::after{ right: 22px; top: 18px; }
+.faq-a{ padding: 0 24px 22px; }
