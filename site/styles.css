@@ -828,3 +828,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .faq-item summary{ padding: 20px 24px; }
 .faq-item summary::after{ right: 22px; top: 18px; }
 .faq-a{ padding: 0 24px 22px; }
+
+/* Licence code chip (About) */
+.code-chip{ display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .5px; color: #d8ccff;
+  background: linear-gradient(135deg, rgba(123,92,255,0.18), rgba(255,107,166,0.10)); border: 1px solid var(--line);
+  border-radius: 20px; padding: 5px 12px; margin-bottom: 14px; }
+.value-card .lic-covers{ margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--text-muted); }
