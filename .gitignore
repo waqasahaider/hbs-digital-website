@@ -15,3 +15,6 @@ dist/
 
 # Internal planning docs (keep out of the public repo)
 HbS_Digital_Website_Services_Brief.md
+
+# Internal handoff (server IPs/infra) — keep out of the public repo
+WEBSITE-SESSION-HANDOFF.md
