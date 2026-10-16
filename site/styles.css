@@ -965,6 +965,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .article .body ul{ color: var(--text-muted); font-size: 16.5px; line-height: 1.7; margin: 0 0 16px; padding-left: 20px; }
 .article .body li{ margin: 8px 0; }
 .article .body strong{ color: var(--text); font-weight: 700; }
+.article .body a{ color: var(--purple); text-decoration: underline; text-decoration-color: rgba(181,108,240,.45); text-underline-offset: 3px; }
+.article .body a:hover{ color: var(--pink); text-decoration-color: currentColor; }
 .article .body .callout{ margin: 26px 0; padding: 18px 22px; background: var(--bg-elevated);
   border-left: 3px solid var(--purple); border-radius: 8px; font-size: 16px; color: var(--text); line-height: 1.6; }
 
