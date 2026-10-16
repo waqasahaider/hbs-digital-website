@@ -819,6 +819,80 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .guarantee h3{ font-size: 20px; margin: 0; }
 .guarantee p{ color: var(--text-muted); font-size: 15px; line-height: 1.65; margin: 10px 0 0; max-width: 660px; }
 
+/* Integrated sales system map */
+.sales-system{ position: relative; }
+.sales-flow{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 34px;
+}
+.sales-flow-node{
+  position: relative;
+  min-height: 230px;
+  overflow: hidden;
+  padding: 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(31,25,51,.78), rgba(16,14,29,.48));
+}
+.sales-flow-node::after{
+  content:"";
+  position:absolute;
+  width: 150px;
+  height: 150px;
+  right: -80px;
+  bottom: -90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181,108,240,.16), transparent 68%);
+  pointer-events:none;
+}
+.sales-flow-num{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: rgba(181,108,240,.28);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+.sales-flow-label{
+  display: inline-block;
+  color: #d6ccef;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+.sales-flow-node h3{
+  max-width: 230px;
+  margin: 28px 0 0;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.sales-flow-node p{
+  margin: 11px 0 0;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.sales-system-rule{
+  display: grid;
+  grid-template-columns: .7fr 1.8fr;
+  gap: 30px;
+  align-items: start;
+  margin-top: 16px;
+  padding: 24px 26px;
+  border: 1px solid rgba(181,108,240,.32);
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(123,92,255,.11), rgba(255,107,166,.06));
+}
+.sales-system-rule strong{ font-size: 16px; }
+.sales-system-rule span{ color: var(--text-muted); font-size: 14px; line-height: 1.65; }
+
 .industries-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
 .industry{
   background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 18px 20px;
@@ -832,10 +906,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 900px){
   .steps{ grid-template-columns: repeat(2, 1fr); }
   .industries-grid{ grid-template-columns: repeat(2, 1fr); }
+  .sales-flow{ grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 620px){
   .steps{ grid-template-columns: 1fr; }
   .guarantee{ flex-direction: column; gap: 12px; padding: 26px 22px; }
+  .sales-flow{ grid-template-columns: 1fr; }
+  .sales-flow-node{ min-height: 0; }
+  .sales-system-rule{ grid-template-columns: 1fr; gap: 10px; padding: 22px; }
 }
 
 /* ============================================================

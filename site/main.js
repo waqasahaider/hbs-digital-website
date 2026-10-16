@@ -32,7 +32,8 @@
   var revealSelector = [
     '.hero-copy', '.hero-visual', '.stats', '.home-intro', '.workflow-story',
     '.group-head', '.pillar', '.service-box', '.step', '.guarantee',
-    '.industry', '.value-card', '.ai-badge', '.svc-cta-band', '.post-card'
+    '.industry', '.value-card', '.ai-badge', '.svc-cta-band', '.post-card',
+    '.sales-flow-node', '.sales-system-rule'
   ].join(',');
   var revealItems = document.querySelectorAll(revealSelector);
 
