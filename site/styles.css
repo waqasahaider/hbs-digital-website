@@ -1009,8 +1009,24 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   content:""; position:absolute; width:170px; height:170px; right:-95px; bottom:-105px; border-radius:50%;
   background: radial-gradient(circle, rgba(255,107,166,.1), transparent 70%); pointer-events:none;
 }
+.service-box-featured{
+  grid-column: 1 / -1;
+  min-height: 270px;
+  padding-right: min(42%, 430px);
+  background:
+    radial-gradient(circle at 82% 45%, rgba(181,108,240,.2), transparent 20%),
+    radial-gradient(circle at 82% 45%, transparent 0 26%, rgba(255,107,166,.12) 26.5% 27%, transparent 27.5% 36%, rgba(123,92,255,.12) 36.5% 37%, transparent 37.5%),
+    linear-gradient(145deg, rgba(31,25,51,.78), rgba(16,14,29,.48));
+}
+.service-box-featured::after{
+  width: 320px; height: 320px; right: 4%; bottom: -220px;
+  background: radial-gradient(circle, rgba(255,159,107,.17), transparent 67%);
+}
 
-@media (max-width: 760px){ .services-list{ grid-template-columns: 1fr; } }
+@media (max-width: 760px){
+  .services-list{ grid-template-columns: 1fr; }
+  .service-box-featured{ grid-column: auto; min-height: 0; padding-right: 30px; }
+}
 
 /* ============================================================
    FAQ — boxed accordion cards (matches Haider Mortgage layout)
