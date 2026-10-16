@@ -7,6 +7,8 @@
 (function () {
   'use strict';
 
+  document.documentElement.classList.add('js');
+
   /* ---------- Mobile nav ---------- */
   var toggle = document.querySelector('.nav-toggle');
   var links = document.getElementById('navlinks');
@@ -24,6 +26,34 @@
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
+  }
+
+  /* ---------- Quiet scroll reveals ---------- */
+  var revealSelector = [
+    '.hero-copy', '.hero-visual', '.stats', '.home-intro', '.workflow-story',
+    '.group-head', '.pillar', '.service-box', '.step', '.guarantee',
+    '.industry', '.value-card', '.ai-badge', '.svc-cta-band', '.post-card'
+  ].join(',');
+  var revealItems = document.querySelectorAll(revealSelector);
+
+  revealItems.forEach(function (item, index) {
+    item.classList.add('reveal');
+    item.classList.add('reveal-delay-' + (index % 4));
+  });
+
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+    revealItems.forEach(function (item) { revealObserver.observe(item); });
+  } else {
+    revealItems.forEach(function (item) { item.classList.add('is-visible'); });
   }
 
   /* ---------- Contact form ---------- */
